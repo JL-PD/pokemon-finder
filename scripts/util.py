@@ -1,9 +1,12 @@
+import requests
+from abc import abstractmethod
 
-class Util():
+class Util:
+    def __init__(self):
+        pass
 
     def get_request(self, url):
-        pass
+        return requests.get(url).json()
 
     def post_request(self, url, data):
         pass
-
