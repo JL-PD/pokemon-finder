@@ -28,8 +28,32 @@ class PokemonFinder(Util):
             list_of_pokemon.append(pokemon)
         return list_of_pokemon
 
-    def get_pokemon_info(self):
-        pass
+    def get_pokemon_info(self, list_of_pokemon, pokemon_name: str):
+        """
+        Function to obtain and return required pokemon data: legendary status, habitat and descripton
+
+        Keyword arguments:
+        pokemon_name -- name of a pokemon
+        """
+
+        for i, pokemon in enumerate(list_of_pokemon):
+            if pokemon_name == pokemon["name"]:
+                pokemon_url = pokemon["url"]
+                pokemon_data = self.get_request(pokemon_url)
+                break
+            if i == len(list_of_pokemon) - 1:
+                print("Pokemon cannot be found in the Pokedex!")
+                self.main()
+        legendary_status = pokemon_data["is_legendary"]
+        pokemon_habitat = pokemon_data["habitat"]["name"]
+
+        for description in pokemon_data["flavor_text_entries"]:
+            if description["language"]["name"] == "en":
+                pokemon_description = description["flavor_text"]
+                # break for performance, as we only care about the english translation
+                break
+
+        return legendary_status, pokemon_habitat, pokemon_description
 
     def translator(self):
         pass
