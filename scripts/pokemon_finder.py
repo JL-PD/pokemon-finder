@@ -8,7 +8,6 @@ import urllib
 from util import Util
 
 POKEDEX_API = "https://pokeapi.co/api/v2/pokemon-species"
-TRANSLATION_API = "https://api.funtranslations.com/translate/"
 
 
 class PokemonFinder(Util):
