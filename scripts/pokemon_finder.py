@@ -4,13 +4,17 @@
 # python imports
 import urllib
 
+# 3rd party imports
+from pokemon.skills import get_ascii
+
 # project imports
 from util import Util
+from description_translator import DescriptionTranslator
 
 POKEDEX_API = "https://pokeapi.co/api/v2/pokemon-species"
 
 
-class PokemonFinder(Util):
+class PokemonFinder(DescriptionTranslator, Util):
     def __init__(self):
         pass
 
@@ -19,6 +23,9 @@ class PokemonFinder(Util):
         pokemon = input("Please type the pokemon you wish to search: ")
         pokemon_list = self.get_pokedex()
         legendary_status, pokemon_habitat, pokemon_description = self.get_pokemon_info(pokemon_list, pokemon)
+        if legendary_status == None:
+            self.main()
+            return
         translated_description, _ = self.translator(legendary_status, pokemon_habitat, pokemon_description)
         print(
             f"""
@@ -28,6 +35,8 @@ Pokemon Habitat: {pokemon_habitat.capitalize()}
 Translated Description: {translated_description}
         """
         )
+
+        get_ascii(name=pokemon, message="")
 
     # retrieve list of pokemon from the pokeapi
     def get_pokedex(self):
@@ -57,7 +66,7 @@ Translated Description: {translated_description}
                 break
             if i == len(list_of_pokemon) - 1:
                 print("Pokemon cannot be found in the Pokedex!")
-                self.main()
+                return None, None, None
         legendary_status = pokemon_data["is_legendary"]
         pokemon_habitat = pokemon_data["habitat"]["name"]
 
@@ -71,4 +80,4 @@ Translated Description: {translated_description}
 
 
 if __name__ == "__main__":
-    PokemonFinder().get_pokedex()
+    PokemonFinder().main()

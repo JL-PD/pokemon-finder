@@ -30,7 +30,7 @@ class DescriptionTranslator(Util):
             post_translation = json.loads(self.post_request(urllib.parse.urljoin(TRANSLATION_API, "shakespeare.json"), data=data).text)
             post_translation.update({"translation_type": "shakespeare"})
         try:
-            translation = post_translation["text"]["contents"]["translated"]
+            translation = post_translation["contents"]["translated"]
             translation_type = post_translation["translation_type"]
             return translation, translation_type
         except KeyError:
