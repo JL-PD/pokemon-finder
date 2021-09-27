@@ -14,6 +14,21 @@ class PokemonFinder(Util):
     def __init__(self):
         pass
 
+    def main(self):
+        # use env variables or actual arguments. instead of input
+        pokemon = input("Please type the pokemon you wish to search: ")
+        pokemon_list = self.get_pokedex()
+        legendary_status, pokemon_habitat, pokemon_description = self.get_pokemon_info(pokemon_list, pokemon)
+        translated_description, _ = self.translator(legendary_status, pokemon_habitat, pokemon_description)
+        print(
+            f"""
+Name: {pokemon.capitalize()}
+Legendary Status: {legendary_status}
+Pokemon Habitat: {pokemon_habitat.capitalize()}
+Translated Description: {translated_description}
+        """
+        )
+
     # retrieve list of pokemon from the pokeapi
     def get_pokedex(self):
         """
@@ -53,9 +68,6 @@ class PokemonFinder(Util):
                 break
 
         return legendary_status, pokemon_habitat, pokemon_description
-
-    def translator(self):
-        pass
 
 
 if __name__ == "__main__":
