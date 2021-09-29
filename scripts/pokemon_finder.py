@@ -20,7 +20,7 @@ class PokemonFinder(DescriptionTranslator, Util):
 
     def main(self):
         # use env variables or actual arguments. instead of input
-        pokemon = input("Please type the pokemon you wish to search: ")
+        pokemon = str(input("Please type the pokemon you wish to search: "))
         pokemon_list = self.get_pokedex()
         legendary_status, pokemon_habitat, pokemon_description = self.get_pokemon_info(pokemon_list, pokemon)
         if legendary_status == None:
@@ -33,6 +33,7 @@ Name: {pokemon.capitalize()}
 Legendary Status: {legendary_status}
 Pokemon Habitat: {pokemon_habitat.capitalize()}
 Translated Description: {translated_description}
+Pokemon Image:
         """
         )
 
@@ -68,8 +69,11 @@ Translated Description: {translated_description}
                 print("Pokemon cannot be found in the Pokedex!")
                 return None, None, None
         legendary_status = pokemon_data["is_legendary"]
-        pokemon_habitat = pokemon_data["habitat"]["name"]
-
+        # fix for some pokemon api calls that return a None value in habitat that cannot be iterated over
+        if pokemon_data["habitat"] == None:
+            pokemon_habitat = str(pokemon_data["habitat"])
+        else:
+            pokemon_habitat = pokemon_data["habitat"]["name"]
         for description in pokemon_data["flavor_text_entries"]:
             if description["language"]["name"] == "en":
                 pokemon_description = description["flavor_text"]
