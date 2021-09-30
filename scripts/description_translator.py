@@ -1,6 +1,9 @@
+# python imports
 import json
-from util import Util
 import urllib
+
+# project imports
+from util import Util
 
 TRANSLATION_API = "https://api.funtranslations.com/translate/"
 
@@ -23,9 +26,11 @@ class DescriptionTranslator(Util):
 
         data = {"text": pokemon_description}
 
+        # yoda api call
         if pokemon_habitat == "cave" or legendary_status == True:
             post_translation = json.loads(self.post_request(urllib.parse.urljoin(TRANSLATION_API, "yoda.json"), data=data).text)
             post_translation.update({"translation_type": "yoda"})
+        # shakespeare api call
         else:
             post_translation = json.loads(self.post_request(urllib.parse.urljoin(TRANSLATION_API, "shakespeare.json"), data=data).text)
             post_translation.update({"translation_type": "shakespeare"})

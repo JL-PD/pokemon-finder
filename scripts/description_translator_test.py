@@ -1,6 +1,9 @@
+# python imports
 import unittest
 from unittest.mock import patch
 import json
+
+# project imports
 from description_translator import DescriptionTranslator
 
 
@@ -27,7 +30,7 @@ class TestDescriptionTranslator(unittest.TestCase):
         _, resp_type = DescriptionTranslator().translator(legendary_status, pokemon_habitat, pokemon_description)
         self.assertEqual(resp_type, "yoda")
 
-        # testing non legendary and non cave habitat pokemon: pikachu
+        # testing non-legendary and non-cave habitat pokemon: pikachu
         legendary_status = False
         pokemon_habitat = "forest"
         mock_post_request.return_value.text = json.dumps({"success": {"total": 1}, "contents": {"translated": "mocked translation", "text": "This is a connection mock test", "translation": "yoda"}})

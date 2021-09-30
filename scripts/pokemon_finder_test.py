@@ -1,4 +1,7 @@
+# python imports
 import unittest
+
+# project imports
 from pokemon_finder import PokemonFinder
 from util import Util
 
@@ -23,8 +26,6 @@ class TestPokemonFinder(unittest.TestCase, Util):
         self.assertEqual(pokemon_description, "A strange seed was\nplanted on its\nback at birth.\x0cThe plant sprouts\nand grows with\nthis POKéMON.")
 
         # non existing pokemon : blue eyes white dragon
-        # to stop the get_pokemon_info function from looping when an incorrect pokemon is inserted.
-        # instead we call exit and check that the self.main is called.
         print("Blue Eyes White Dragon")
         legendary_status, pokemon_habitat, pokemon_description = PokemonFinder.get_pokemon_info(self, list_of_pokemon, "blue eyes white dragon")
         self.assertEqual(legendary_status, None)

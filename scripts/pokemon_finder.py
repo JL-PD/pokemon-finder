@@ -1,8 +1,9 @@
-# Author:
+__author__ = "Jose Pereira"
 # License terms:
 
 # python imports
 import urllib
+import re
 
 # 3rd party imports
 from pokemon.skills import get_ascii
@@ -19,8 +20,13 @@ class PokemonFinder(DescriptionTranslator, Util):
         pass
 
     def main(self):
-        # use env variables or actual arguments. instead of input
-        pokemon = str(input("Please type the pokemon you wish to search: "))
+        pokemon = str(input("Please type the pokemon you wish to search: ")).lower()
+        # transforms names with apostrophes to how pokemon_api handles it
+        pokemon = re.sub("'", "", pokemon)
+        # transforms names with spaces to how pokemon_api handles it
+        pokemon = re.sub(" ", "-", pokemon)
+        if pokemon == "exit":
+            return
         pokemon_list = self.get_pokedex()
         legendary_status, pokemon_habitat, pokemon_description = self.get_pokemon_info(pokemon_list, pokemon)
         if legendary_status == None:
@@ -38,6 +44,8 @@ Pokemon Image:
         )
 
         get_ascii(name=pokemon, message="")
+        self.main()
+        return
 
     # retrieve list of pokemon from the pokeapi
     def get_pokedex(self):
@@ -71,7 +79,7 @@ Pokemon Image:
         legendary_status = pokemon_data["is_legendary"]
         # fix for some pokemon api calls that return a None value in habitat that cannot be iterated over
         if pokemon_data["habitat"] == None:
-            pokemon_habitat = str(pokemon_data["habitat"])
+            pokemon_habitat = "Habitat Unknown"
         else:
             pokemon_habitat = pokemon_data["habitat"]["name"]
         for description in pokemon_data["flavor_text_entries"]:
