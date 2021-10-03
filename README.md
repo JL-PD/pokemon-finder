@@ -30,7 +30,8 @@
 **Virtual Environment**
 - In Powershell, copy and paste the following line to create a virtual environment 'python -m venv venv'.
 - Then to activate your virtual environment, copy and paste the following line '.\venv\Scripts\Activate.ps1'. (you may run into an error 'execution of scripts is disabled on this system' run Powershell as administrator and copy and paste 'Set-ExecutionPolicy RemoteSigned' and type 'Y' this should allow you to activate the virtual environment afterwards.)
-
+<br></br>
+<br></br>
 
 
 **Dockerfile installation for pokemon-finder**
@@ -45,7 +46,7 @@
 
 5 - Then to run the pokemon-finder, copy and paste 'docker run -t -i pokemon-finder', if you would like to exit the program type 'exit' to stop the pokemon-finder.
 
-
+<br></br>
 
 **Anything you would do differently for a production API:**
 
