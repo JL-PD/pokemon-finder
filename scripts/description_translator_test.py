@@ -18,7 +18,6 @@ class TestDescriptionTranslator(unittest.TestCase):
         legendary_status = True
         pokemon_habitat = "rare"
         pokemon_description = "mocked description"
-
         mock_post_request.return_value.text = json.dumps({"success": {"total": 1}, "contents": {"translated": "mocked translation", "text": "This is a connection mock test", "translation": "yoda"}})
         _, resp_type = DescriptionTranslator().translator(legendary_status, pokemon_habitat, pokemon_description)
         self.assertEqual(resp_type, "yoda")
