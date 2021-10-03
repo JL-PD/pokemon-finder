@@ -1,6 +1,6 @@
 # pokemon-finder README
 
-How to run pokemon-finder through windows 10
+**How to run pokemon-finder through windows 10**
 
 1 - Use the following link and install the latest version of python https://www.python.org/downloads/.
 
@@ -27,13 +27,13 @@ How to run pokemon-finder through windows 10
 11 - Type the pokemon you wish to search for and hit enter, if you would like to terminate the program type 'exit' or close the terminal.
 
 
-** Virtual Environment **
+**Virtual Environment**
 - In Powershell, copy and paste the following line to create a virtual environment 'python -m venv venv'.
 - Then to activate your virtual environment, copy and paste the following line '.\venv\Scripts\Activate.ps1'. (you may run into an error 'execution of scripts is disabled on this system' run Powershell as administrator and copy and paste 'Set-ExecutionPolicy RemoteSigned' and type 'Y' this should allow you to activate the virtual environment afterwards.)
 
 
 
-Dockerfile installation for pokemon-finder
+**Dockerfile installation for pokemon-finder**
 
 1 - Use the following link and install docker on your computer https://docs.docker.com/desktop/windows/install/
 
@@ -47,7 +47,7 @@ Dockerfile installation for pokemon-finder
 
 
 
-Anything you would do differently for a production API:
+**Anything you would do differently for a production API:**
 
 As there is a limit for the translation calls that can be done of up to 5 per hour, I would suggest either paying for the premium services to stop this limitation, or paying for the service temporarily and performing api calls for all of the pokemon and caching the translations, storing them in a local database assuming that this is within the legal requirements of the api.
 
