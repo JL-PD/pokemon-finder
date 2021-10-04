@@ -65,6 +65,7 @@ Pokemon Image:
 
         Keyword arguments:
         pokemon_name -- name of a pokemon
+        list_of_pokemon -- a list containing pokemon
         """
 
         for i, pokemon in enumerate(list_of_pokemon):
