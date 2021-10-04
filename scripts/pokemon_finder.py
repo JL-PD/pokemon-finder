@@ -1,5 +1,4 @@
 __author__ = "Jose Pereira"
-# License terms:
 
 # python imports
 import urllib

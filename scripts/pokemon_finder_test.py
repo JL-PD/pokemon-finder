@@ -5,7 +5,6 @@ import unittest
 from pokemon_finder import PokemonFinder
 from util import Util
 
-# Utility
 class TestPokemonFinder(unittest.TestCase, Util):
     def test_get_pokedex(self):
         # Using greater than to avoid false positives in the case that the pokemon list expands
@@ -31,6 +30,7 @@ class TestPokemonFinder(unittest.TestCase, Util):
         self.assertEqual(legendary_status, None)
         self.assertEqual(pokemon_habitat, None)
         self.assertEqual(pokemon_description, None)
+
         # incorrect input type : integer
         print("integer input")
         legendary_status, pokemon_habitat, pokemon_description = PokemonFinder.get_pokemon_info(self, list_of_pokemon, 121317231)
